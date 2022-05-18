@@ -1,2 +1,2 @@
 # tidytuesday
-Code and plots for submissions to the #tidytuesday challenge
+Code and plots submitted to the #tidytuesday challenge
