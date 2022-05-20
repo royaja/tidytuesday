@@ -1,0 +1,50 @@
+
+# TidyTuesday -------------------------------------------
+
+# Tidy Tuesday Challenge on Twitter - Week 20 
+
+# Eurovision 
+
+# Loading packages ---------------------------------------
+
+library(tidytuesdayR)
+library(tidyverse)
+
+# Loading week 20 data  ----------------------------------
+
+raw_data <- tidytuesdayR::tt_load(2022, week = 20)
+
+eurovision <- raw_data$eurovision
+
+# Explore data  ------------------------------------------
+
+head(eurovision)
+
+glimpse(eurovision)
+
+# Wrangle data -------------------------------------------
+
+points_final_2022 <- eurovision %>% 
+  filter(year == 2022, 
+         section == "grand-final")
+
+# Plot data -----------------------------------------------
+
+points_final_2022 %>% 
+  ggplot(aes(x = total_points, 
+             y = reorder(artist_country, total_points))) + 
+  geom_col(fill = "blue") +
+  geom_text(aes(label = total_points), 
+            vjust = 0.5, 
+            hjust = -0.5, 
+            size = 2) +
+  theme_classic() +
+  theme(
+    plot.background = element_rect(fill = "yellow"), 
+    panel.background = element_rect(fill = "yellow"), 
+    text = element_text(family = "serif")    ) +
+  labs(
+    y = "Country", 
+    x = "Total Points",
+    title = "Eurovision 2022: Points awarded"
+    )
